@@ -1,0 +1,72 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package modelo;
+
+import java.io.Serializable;
+import java.time.LocalDate;
+
+/**
+ *
+ * @author juanjoanduquia
+ */
+public class Reserva implements Serializable{
+    
+    private int idReserva;
+    private Cliente Cliente;
+    private Maquina maquina;
+    private LocalDate fechaReserva;
+    private int cantidadHoras;
+
+    public Reserva(int idReserva, Cliente Cliente, Maquina maquina, LocalDate fechaReserva, int cantidadHoras) {
+        this.idReserva = idReserva;
+        this.Cliente = Cliente;
+        this.maquina = maquina;
+        this.fechaReserva = fechaReserva;
+        this.cantidadHoras = cantidadHoras;
+    }
+
+    public int getIdReserva() {
+        return idReserva;
+    }
+
+    public void setIdReserva(int idReserva) {
+        this.idReserva = idReserva;
+    }
+
+    public Cliente getCliente() {
+        return Cliente;
+    }
+
+    public void setCliente(Cliente Cliente) {
+        this.Cliente = Cliente;
+    }
+
+    public Maquina getMaquina() {
+        return maquina;
+    }
+
+    public void setMaquina(Maquina maquina) {
+        this.maquina = maquina;
+    }
+
+    public LocalDate getFechaReserva() {
+        return fechaReserva;
+    }
+
+    public void setFechaReserva(LocalDate fechaReserva) {
+        this.fechaReserva = fechaReserva;
+    }
+
+    public int getCantidadHoras() {
+        return cantidadHoras;
+    }
+
+    public void setCantidadHoras(int cantidadHoras) {
+        this.cantidadHoras = cantidadHoras;
+    }
+    
+    
+    
+}
