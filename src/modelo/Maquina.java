@@ -16,7 +16,6 @@ public class Maquina implements Serializable {
     private String tipoDeJuego;
     private String genero;
     private double valorHora;
-    private Mantenimiento mantenimiento;
 
     public Maquina(int idMaquina, int edadMinima, String tipoDeJuego, String genero, double valorHora) {
         this.idMaquina = idMaquina;
@@ -24,7 +23,6 @@ public class Maquina implements Serializable {
         this.tipoDeJuego = tipoDeJuego;
         this.genero = genero;
         this.valorHora = valorHora;
-        this.mantenimiento = mantenimiento;
     }
 
     public int getIdMaquina() {
@@ -67,13 +65,7 @@ public class Maquina implements Serializable {
         this.valorHora = valorHora;
     }
 
-    public Mantenimiento getMantenimiento() {
-        return mantenimiento;
-    }
-
-    public void setMantenimiento(Mantenimiento mantenimiento) {
-        this.mantenimiento = mantenimiento;
-    }
+   
     
     
 }
