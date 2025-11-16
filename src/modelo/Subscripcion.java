@@ -6,13 +6,14 @@ package modelo;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 /**
  *
  * @author juanjoanduquia
  */
 public class Subscripcion implements Serializable {
-    
+    private int idSuscripcion;
     private TipoSuscripcion tipo;
     private int horasDisponibles;
     private boolean descuento;
@@ -21,11 +22,21 @@ public class Subscripcion implements Serializable {
     private LocalDateTime fechaInicio;
     private LocalDateTime fechafin;
     private boolean activa; 
+    private ArrayList<Reserva> listaDeReservas;
 
-    public Subscripcion(TipoSuscripcion tipo, int horasDisponibles, boolean descuento, double valorBase, Cliente cliente, LocalDateTime fechaInicio, LocalDateTime fechafin, boolean activa) {
+    public ArrayList<Reserva> getListaDeReservas() {
+        return listaDeReservas;
+    }
+
+    public void setListaDeReservas(ArrayList<Reserva> listaDeReservas) {
+        this.listaDeReservas = listaDeReservas;
+    }
+
+    public Subscripcion(int idSuscripcion ,TipoSuscripcion tipo, int horasDisponibles, double valorBase, Cliente cliente, LocalDateTime fechaInicio, LocalDateTime fechafin, boolean activa) {
+        this.idSuscripcion = idSuscripcion;
         this.tipo = tipo;
         this.horasDisponibles = horasDisponibles;
-        this.descuento = descuento;
+        this.descuento = false;
         this.valorBase = valorBase;
         this.cliente = cliente;
         this.fechaInicio = fechaInicio;
@@ -33,6 +44,25 @@ public class Subscripcion implements Serializable {
         this.activa = activa;
     }
 
+    public Subscripcion(int idSuscripcion, TipoSuscripcion tipo, int horasDisponibles, double valorBase) {
+        this.idSuscripcion = idSuscripcion;
+        this.tipo = tipo;
+        this.horasDisponibles = horasDisponibles;
+        this.valorBase = valorBase;
+    }
+    
+    
+    
+
+    public int getIdSuscripcion() {
+        return idSuscripcion;
+    }
+
+    public void setIdSuscripcion(int idSuscripcion) {
+        this.idSuscripcion = idSuscripcion;
+    }
+
+    
     public TipoSuscripcion getTipo() {
         return tipo;
     }

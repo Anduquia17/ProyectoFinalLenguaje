@@ -16,14 +16,13 @@ public class Cliente extends Usuario implements Serializable {
     private String nombre;
     private int edad;
     private int id;
-    private ArrayList<Subscripcion> listaDeSubcripsiones;
+    private ArrayList <Subscripcion> listaDeSubcripsiones;
 
-    public Cliente(String nombre, int edad, int id, ArrayList<Subscripcion> listaDeSubcripsiones, String correo, String contraseña, String rol) {
+    public Cliente(String nombre, int edad, int id, String correo, String contraseña, String rol) {
         super(correo, contraseña, rol);
         this.nombre = nombre;
         this.edad = edad;
         this.id = id;
-        this.listaDeSubcripsiones = listaDeSubcripsiones;
     }
 
     public String getNombre() {
