@@ -55,6 +55,7 @@ public class VistaGestionMaquina extends javax.swing.JFrame {
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnMantenimiento = new javax.swing.JButton();
+        jCheckBoxFueraDeServicio = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -120,6 +121,8 @@ public class VistaGestionMaquina extends javax.swing.JFrame {
             }
         });
 
+        jCheckBoxFueraDeServicio.setText("Fuera De Servicio");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -129,27 +132,32 @@ public class VistaGestionMaquina extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblIdMaquina)
-                            .addComponent(lblEdadMinima)
-                            .addComponent(lblTipoDeJuego)
-                            .addComponent(lblGenero)
-                            .addComponent(lblValorHora))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtIdMaquina)
-                            .addComponent(txtEdadMinima)
-                            .addComponent(txtTipoDeJuego)
-                            .addComponent(txtGenero)
-                            .addComponent(txtValorHora)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblIdMaquina)
+                                    .addComponent(lblEdadMinima)
+                                    .addComponent(lblTipoDeJuego)
+                                    .addComponent(lblGenero)
+                                    .addComponent(lblValorHora))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtIdMaquina)
+                                    .addComponent(txtEdadMinima)
+                                    .addComponent(txtTipoDeJuego)
+                                    .addComponent(txtGenero)
+                                    .addComponent(txtValorHora)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnGuardar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnBuscar))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnEditar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnEliminar)))
+                        .addGap(26, 26, 26))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnGuardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBuscar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnEditar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEliminar)))
-                .addGap(26, 26, 26)
+                        .addComponent(jCheckBoxFueraDeServicio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -180,7 +188,9 @@ public class VistaGestionMaquina extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblValorHora)
-                            .addComponent(txtValorHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtValorHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jCheckBoxFueraDeServicio))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -202,14 +212,14 @@ public class VistaGestionMaquina extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(241, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -222,7 +232,8 @@ public class VistaGestionMaquina extends javax.swing.JFrame {
         String tipoJuego = txtTipoDeJuego.getText();
         String genero = txtGenero.getText();
         double valorHora = Double.valueOf(txtValorHora.getText());
-        Maquina maquina = new Maquina(idMaquina, edadMinima, tipoJuego, genero, valorHora);
+        boolean disponible = jCheckBoxFueraDeServicio.isSelected();
+        Maquina maquina = new Maquina(idMaquina, edadMinima, tipoJuego, genero, valorHora, disponible);
         boolean respuesta = controladorMaquina.guardarMaquina(maquina);
         if (respuesta) {
             JOptionPane.showMessageDialog(null, "Se guardo");
@@ -261,7 +272,8 @@ public class VistaGestionMaquina extends javax.swing.JFrame {
         String tipoJuego = txtTipoDeJuego.getText();
         String genero = txtGenero.getText();
         double valorHora = Double.valueOf(txtValorHora.getText());
-        Maquina maquina = new Maquina(idMaquina, edadMinima, tipoJuego, genero, valorHora);
+        boolean disponible = jCheckBoxFueraDeServicio.isSelected();
+        Maquina maquina = new Maquina(idMaquina, edadMinima, tipoJuego, genero, valorHora, disponible);
         boolean respuesta = controladorMaquina.editarMaquina(maquina);
         if (respuesta) {
             JOptionPane.showMessageDialog(null, "Se edito");
@@ -297,7 +309,7 @@ public class VistaGestionMaquina extends javax.swing.JFrame {
         VistaMantenimiento vistaM = new VistaMantenimiento();
         vistaM.setVisible(true);
         this.dispose();
-        
+
     }//GEN-LAST:event_btnMantenimientoActionPerformed
 
     public void limpiarCampos() {
@@ -353,6 +365,7 @@ public class VistaGestionMaquina extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnMantenimiento;
+    private javax.swing.JCheckBox jCheckBoxFueraDeServicio;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblEdadMinima;

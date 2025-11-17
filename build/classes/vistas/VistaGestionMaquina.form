@@ -26,7 +26,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="241" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -35,7 +35,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="95" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -59,35 +59,43 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblIdMaquina" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblEdadMinima" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblTipoDeJuego" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblGenero" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblValorHora" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="lblIdMaquina" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblEdadMinima" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblTipoDeJuego" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblGenero" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblValorHora" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="txtIdMaquina" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txtEdadMinima" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txtTipoDeJuego" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txtGenero" max="32767" attributes="0"/>
+                                      <Component id="txtValorHora" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="btnGuardar" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnBuscar" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="btnEditar" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnEliminar" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtIdMaquina" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtEdadMinima" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtTipoDeJuego" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtGenero" max="32767" attributes="0"/>
-                              <Component id="txtValorHora" alignment="0" max="32767" attributes="0"/>
-                          </Group>
+                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="btnGuardar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnBuscar" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="btnEditar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnEliminar" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCheckBoxFueraDeServicio" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="326" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               </Group>
@@ -127,6 +135,8 @@
                               <Component id="lblValorHora" min="-2" max="-2" attributes="0"/>
                               <Component id="txtValorHora" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jCheckBoxFueraDeServicio" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jScrollPane1" min="-2" pref="174" max="-2" attributes="0"/>
                   </Group>
@@ -246,6 +256,11 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMantenimientoActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="jCheckBoxFueraDeServicio">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Fuera De Servicio"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

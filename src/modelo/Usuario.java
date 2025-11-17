@@ -13,15 +13,25 @@ import java.util.ArrayList;
  */
 public class Usuario implements Serializable{
     
-    
+    private int id;
     private String correo;
     private String contraseña;
     private String rol;
 
-    public Usuario(String correo, String contraseña, String rol) {
+    public Usuario(int id, String correo, String contraseña, String rol) {
+        this.id = id;
         this.correo = correo;
         this.contraseña = contraseña;
         this.rol = rol;
+        
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Usuario() {

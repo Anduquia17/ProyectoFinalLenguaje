@@ -21,18 +21,10 @@ public class Subscripcion implements Serializable {
     private Cliente cliente;
     private LocalDateTime fechaInicio;
     private LocalDateTime fechafin;
-    private boolean activa; 
     private ArrayList<Reserva> listaDeReservas;
 
-    public ArrayList<Reserva> getListaDeReservas() {
-        return listaDeReservas;
-    }
-
-    public void setListaDeReservas(ArrayList<Reserva> listaDeReservas) {
-        this.listaDeReservas = listaDeReservas;
-    }
-
-    public Subscripcion(int idSuscripcion ,TipoSuscripcion tipo, int horasDisponibles, double valorBase, Cliente cliente, LocalDateTime fechaInicio, LocalDateTime fechafin, boolean activa) {
+    
+    public Subscripcion(int idSuscripcion ,TipoSuscripcion tipo, int horasDisponibles, double valorBase, Cliente cliente, LocalDateTime fechaInicio, LocalDateTime fechafin) {
         this.idSuscripcion = idSuscripcion;
         this.tipo = tipo;
         this.horasDisponibles = horasDisponibles;
@@ -41,7 +33,6 @@ public class Subscripcion implements Serializable {
         this.cliente = cliente;
         this.fechaInicio = fechaInicio;
         this.fechafin = fechafin;
-        this.activa = activa;
     }
 
     public Subscripcion(int idSuscripcion, TipoSuscripcion tipo, int horasDisponibles, double valorBase) {
@@ -119,13 +110,12 @@ public class Subscripcion implements Serializable {
         this.fechafin = fechafin;
     }
 
-    public boolean isActiva() {
-        return activa;
+    
+
+    public void setListaDeReservas(ArrayList<Reserva> listaDeReservas) {
+        this.listaDeReservas = listaDeReservas;
     }
 
-    public void setActiva(boolean activa) {
-        this.activa = activa;
-    }
 
     
 }

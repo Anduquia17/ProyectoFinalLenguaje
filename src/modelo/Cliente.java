@@ -15,14 +15,12 @@ public class Cliente extends Usuario implements Serializable {
 
     private String nombre;
     private int edad;
-    private int id;
     private ArrayList <Subscripcion> listaDeSubcripsiones;
 
     public Cliente(String nombre, int edad, int id, String correo, String contraseña, String rol) {
-        super(correo, contraseña, rol);
+        super(id, correo, contraseña, rol);
         this.nombre = nombre;
         this.edad = edad;
-        this.id = id;
     }
 
     public String getNombre() {
@@ -41,13 +39,7 @@ public class Cliente extends Usuario implements Serializable {
         this.edad = edad;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    
 
     public ArrayList<Subscripcion> getListaDeSubcripsiones() {
         return listaDeSubcripsiones;

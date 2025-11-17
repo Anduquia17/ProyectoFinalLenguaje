@@ -6,6 +6,7 @@ package controlador;
 
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import modelo.Mantenimiento;
 import modelo.Maquina;
 import singleton.Singleton;
 
@@ -90,5 +91,9 @@ public class ControladorMaquina {
         }
         return model;
     }
+
+//    public Maquina fueraDeServicio(Mantenimiento mantenimiento) {
+//        Maquina aux = buscarMaquina()
+//    }
 
 }

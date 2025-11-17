@@ -16,13 +16,16 @@ public class Maquina implements Serializable {
     private String tipoDeJuego;
     private String genero;
     private double valorHora;
+    private Mantenimiento mantenimiento;
+    private boolean disponible;
 
-    public Maquina(int idMaquina, int edadMinima, String tipoDeJuego, String genero, double valorHora) {
+    public Maquina(int idMaquina, int edadMinima, String tipoDeJuego, String genero, double valorHora, boolean disponible) {
         this.idMaquina = idMaquina;
         this.edadMinima = edadMinima;
         this.tipoDeJuego = tipoDeJuego;
         this.genero = genero;
         this.valorHora = valorHora;
+        this.disponible = true;
     }
 
     public int getIdMaquina() {
@@ -64,6 +67,24 @@ public class Maquina implements Serializable {
     public void setValorHora(double valorHora) {
         this.valorHora = valorHora;
     }
+
+    public Mantenimiento getMantenimiento() {
+        return mantenimiento;
+    }
+
+    public void setMantenimiento(Mantenimiento mantenimiento) {
+        this.mantenimiento = mantenimiento;
+    }
+
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
+
+    
 
    
     

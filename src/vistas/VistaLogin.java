@@ -2,6 +2,7 @@ package vistas;
 
 import controlador.ControladorUsuario;
 import javax.swing.JOptionPane;
+import modelo.Cliente;
 import modelo.Usuario;
 
 /*
@@ -118,7 +119,7 @@ public class VistaLogin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -140,6 +141,18 @@ public class VistaLogin extends javax.swing.JFrame {
         Usuario respuesta = controladorUsuario.login(correo, contraseña);
         if (respuesta != null) {
             JOptionPane.showMessageDialog(null, "Bienvenido");
+            if (respuesta instanceof Cliente) {
+                VistaCliente vistaCliente = new VistaCliente();
+                vistaCliente.setVisible(true);
+                vistaCliente.setLocationRelativeTo(this);
+                this.dispose();
+            } else {
+                VistaAdministrador vistaAdministrador = new VistaAdministrador();
+                vistaAdministrador.setVisible(true);
+                vistaAdministrador.setLocationRelativeTo(null);
+                this.dispose();
+            }
+
         } else {
             JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
         }

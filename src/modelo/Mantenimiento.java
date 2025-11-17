@@ -14,28 +14,26 @@ import java.time.temporal.ChronoUnit;
  */
 public class Mantenimiento implements Serializable {
 
-    private Maquina maquina;
     private String motivo;
     private LocalDate fechaInicioMan;
     private LocalDate fechaFinMan;
     private int diasRestantes;
-    private boolean activa;
+    private boolean activar;
 
-    public Mantenimiento(String motivo, LocalDate fechaInicioMan, LocalDate fechaFinMan, boolean activa, Maquina maquina, int diasRestantes) {
+    public Mantenimiento(String motivo, LocalDate fechaInicioMan, LocalDate fechaFinMan, boolean activa, int diasRestantes) {
         this.motivo = motivo;
         this.fechaInicioMan = fechaInicioMan;
         this.fechaFinMan = fechaFinMan;
-        this.activa = false;
-        this.maquina = this.maquina;
+        this.activar = false;
         this.diasRestantes = diasRestantes;
     }
 
     public boolean isActiva() {
-        return activa;
+        return activar;
     }
 
     public void setActiva(boolean activa) {
-        this.activa = activa;
+        this.activar = activa;
     }
 
     public String getMotivo() {
@@ -62,9 +60,12 @@ public class Mantenimiento implements Serializable {
         this.fechaFinMan = fechaFinMan;
     }
 
-    public long CalcularDiasRestantes() {
-        long diasRestantes = ChronoUnit.DAYS.between(fechaInicioMan, fechaInicioMan);
+    public int getDiasRestantes() {
         return diasRestantes;
+    }
+
+    public void setDiasRestantes(int diasRestantes) {
+        this.diasRestantes = diasRestantes;
     }
 
 }

@@ -11,6 +11,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import modelo.Maquina;
+import modelo.Subscripcion;
 import modelo.Usuario;
 
 /**
@@ -23,6 +24,11 @@ public class Singleton {
 
     private ArrayList<Usuario> listaUsuarios;
     private ArrayList<Maquina> listaDeMaquinas;
+    private ArrayList<Subscripcion> listaSubscripcion;
+
+    public ArrayList<Subscripcion> getListaSubscripcion() {
+        return listaSubscripcion;
+    }
 
     public ArrayList<Usuario> getListaUsuarios() {
         return listaUsuarios;
@@ -36,6 +42,7 @@ public class Singleton {
     public Singleton() {
         this.listaUsuarios = leerUsuario();
         this.listaDeMaquinas = leerMaquina();
+        this.listaSubscripcion= leerSubscripcion();
     }
 
     public static Singleton getINSTANCE() {
@@ -91,4 +98,38 @@ public class Singleton {
             return new ArrayList<>();
         }
     }
+    
+    
+    public void escribirSubscricion() {
+        try {
+            FileOutputStream archivo
+                    = new FileOutputStream("listaSubscripcion.dat");
+            ObjectOutputStream escritor
+                    = new ObjectOutputStream(archivo);
+            escritor.writeObject(listaSubscripcion);
+        } catch (IOException ex) {
+        }
+    }
+
+    private ArrayList<Subscripcion> leerSubscripcion() {
+        try {
+            FileInputStream archivo
+                    = new FileInputStream("listaSubcripcion.dat");
+            ObjectInputStream lector
+                    = new ObjectInputStream(archivo);
+            ArrayList<Subscripcion> listaSubscripcion
+                    = (ArrayList<Subscripcion>)lector.readObject();
+            lector.close();
+            return listaSubscripcion;
+        } catch (IOException | ClassNotFoundException ex) {
+            return new ArrayList<>();
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
 }
