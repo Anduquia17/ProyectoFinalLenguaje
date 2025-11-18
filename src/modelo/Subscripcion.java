@@ -115,6 +115,7 @@ public class Subscripcion implements Serializable {
     public void setListaDeReservas(ArrayList<Reserva> listaDeReservas) {
         this.listaDeReservas = listaDeReservas;
     }
+    
 
 
     
