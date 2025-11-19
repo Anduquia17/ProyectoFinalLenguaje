@@ -6,6 +6,7 @@ package modelo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import singleton.Singleton;
 
 /**
  *
@@ -21,6 +22,7 @@ public class Cliente extends Usuario implements Serializable {
         super(id, correo, contraseña, rol);
         this.nombre = nombre;
         this.edad = edad;
+        this.listaDeSubcripsiones = new ArrayList<>();
     }
 
     public String getNombre() {

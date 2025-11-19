@@ -133,6 +133,7 @@ public class VistaAdministrador extends javax.swing.JFrame {
         VistaLogin vistaLogin = new VistaLogin();
         vistaLogin.setVisible(true);
         vistaLogin.setLocationRelativeTo(this);
+        dispose();
     }//GEN-LAST:event_btnRegresarAloginActionPerformed
 
     private void btnVerResumenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerResumenActionPerformed

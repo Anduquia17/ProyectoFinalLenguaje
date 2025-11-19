@@ -22,9 +22,9 @@ public class Subscripcion implements Serializable {
     private LocalDateTime fechaInicio;
     private LocalDateTime fechafin;
     private ArrayList<Reserva> listaDeReservas;
+    private boolean estadoSubs;
 
-    
-    public Subscripcion(int idSuscripcion ,TipoSuscripcion tipo, int horasDisponibles, double valorBase, Cliente cliente, LocalDateTime fechaInicio, LocalDateTime fechafin) {
+    public Subscripcion(int idSuscripcion ,TipoSuscripcion tipo, int horasDisponibles, double valorBase, Cliente cliente, LocalDateTime fechaInicio, LocalDateTime fechafin, boolean estadoSubs) {
         this.idSuscripcion = idSuscripcion;
         this.tipo = tipo;
         this.horasDisponibles = horasDisponibles;
@@ -33,15 +33,17 @@ public class Subscripcion implements Serializable {
         this.cliente = cliente;
         this.fechaInicio = fechaInicio;
         this.fechafin = fechafin;
+        this.estadoSubs = estadoSubs;
     }
 
-    public Subscripcion(int idSuscripcion, TipoSuscripcion tipo, int horasDisponibles, double valorBase) {
-        this.idSuscripcion = idSuscripcion;
-        this.tipo = tipo;
-        this.horasDisponibles = horasDisponibles;
-        this.valorBase = valorBase;
+    public boolean isEstadoSubs() {
+        return estadoSubs;
     }
-    
+
+    public void setEstadoSubs(boolean estadoSubs) {
+        this.estadoSubs = estadoSubs;
+    }
+
     
     
 
@@ -116,7 +118,7 @@ public class Subscripcion implements Serializable {
         this.listaDeReservas = listaDeReservas;
     }
     
-
-
     
+    
+ 
 }

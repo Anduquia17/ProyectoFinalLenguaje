@@ -6,6 +6,7 @@ package controlador;
 
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import modelo.Cliente;
 import modelo.Subscripcion;
 import singleton.Singleton;
 
@@ -28,7 +29,6 @@ public class ControladorSuscripcion {
     public Subscripcion buscarSubscripción(int id) {
         for (int i = 0; i < listaDeSuscripciones.size(); i++) {
             if (listaDeSuscripciones.get(i).getIdSuscripcion() == id) {
-                Singleton.getINSTANCE().escribirSubscricion();
                 return listaDeSuscripciones.get(i);
             }
 
@@ -37,29 +37,30 @@ public class ControladorSuscripcion {
 
     }
 
-    public boolean guardarSubcripcion(Subscripcion subscripcion) {
+    public boolean guardarSubcripcion(Subscripcion subscripcion, Cliente cliente) {
         Subscripcion aux = buscarSubscripción(subscripcion.getIdSuscripcion());
-        if (aux == null) {
-            listaDeSuscripciones.add(subscripcion);
-            Singleton.getINSTANCE().escribirSubscricion();
-            return true;
-        }
-        return false;
-    }
-    
-    
-    
-    public DefaultTableModel listarSubs(){
-        DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(new String []{"Id subscripción","Tipo Subscripción","Horas disponibles","Valor Base"});
-        for (int i = 0; i < getListaDeSuscripciones().size(); i++) {
-            if(getListaDeSuscripciones().get(i) != null){
-                model.addRow(new Object[]{getListaDeSuscripciones().get(i).getIdSuscripcion(),
-                getListaDeSuscripciones().get(i).getTipo(),
-                getListaDeSuscripciones().get(i).getHorasDisponibles(),
-                getListaDeSuscripciones().get(i).getValorBase()});
+        for (int i = 0; i < cliente.getListaDeSubcripsiones().size(); i++) {
+            if (aux != null || cliente.getListaDeSubcripsiones().get(i).isEstadoSubs() == true) {
+                return false;
             }
-            
+
+        }
+        listaDeSuscripciones.add(subscripcion);
+        Singleton.getINSTANCE().escribirSubscricion();
+        return true;
+    }
+
+    public DefaultTableModel listarSubs() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new String[]{"Id subscripción", "Tipo Subscripción", "Horas disponibles", "Valor Base"});
+        for (int i = 0; i < getListaDeSuscripciones().size(); i++) {
+            if (getListaDeSuscripciones().get(i) != null) {
+                model.addRow(new Object[]{getListaDeSuscripciones().get(i).getIdSuscripcion(),
+                    getListaDeSuscripciones().get(i).getTipo(),
+                    getListaDeSuscripciones().get(i).getHorasDisponibles(),
+                    getListaDeSuscripciones().get(i).getValorBase()});
+            }
+
         }
         return model;
     }
