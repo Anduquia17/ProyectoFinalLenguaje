@@ -18,7 +18,7 @@ public class ControladorMantenimiento {
 
     public ControladorMantenimiento() {
         this.controladorMaq = new ControladorMaquina();
-    }
+    } 
 
     public boolean generarBloqueo(Maquina maquina, Mantenimiento mantenimiento) {
         for (int i = 0; i < controladorMaq.getListaDeMaquinas().size(); i++) {
