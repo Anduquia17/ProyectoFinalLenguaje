@@ -52,7 +52,7 @@ public class Singleton {
     public void escribirUsuario() {
         try {
             FileOutputStream archivo
-                    = new FileOutputStream("src/listasUsuario.dat");
+                    = new FileOutputStream("src/re/listasUsuario.dat");
             ObjectOutputStream escritor
                     = new ObjectOutputStream(archivo);
             escritor.writeObject(listaUsuarios);
@@ -63,7 +63,7 @@ public class Singleton {
     private ArrayList<Usuario> leerUsuario() {
         try {
             FileInputStream archivo
-                    = new FileInputStream("src/listasUsuario.dat");
+                    = new FileInputStream("src/re/listasUsuario.dat");
             ObjectInputStream lector
                     = new ObjectInputStream(archivo);
             return (ArrayList<Usuario>) lector.readObject();
@@ -76,7 +76,7 @@ public class Singleton {
     public void escribirMaquina() {
         try {
             FileOutputStream archivo
-                    = new FileOutputStream("src/listaMaquinas.dat");
+                    = new FileOutputStream("src/re/listaMaquinas.dat");
             ObjectOutputStream escritor
                     = new ObjectOutputStream(archivo);
             escritor.writeObject(listaDeMaquinas);
@@ -87,7 +87,7 @@ public class Singleton {
     private ArrayList<Maquina> leerMaquina() {
         try {
             FileInputStream archivo
-                    = new FileInputStream("src/listaMaquinas.dat");
+                    = new FileInputStream("src/re/listaMaquinas.dat");
             ObjectInputStream lector
                     = new ObjectInputStream(archivo);
             ArrayList<Maquina> listaDeMaquinas
@@ -103,10 +103,11 @@ public class Singleton {
     public void escribirSubscricion() {
         try {
             FileOutputStream archivo
-                    = new FileOutputStream("src/listaSubscripcion.dat");
+                    = new FileOutputStream("src/re/listaSubcripcion.dat");
             ObjectOutputStream escritor
                     = new ObjectOutputStream(archivo);
             escritor.writeObject(listaSubscripcion);
+            escritor.close();
         } catch (IOException ex) {
         }
     }
@@ -114,15 +115,16 @@ public class Singleton {
     private ArrayList<Subscripcion> leerSubscripcion() {
         try {
             FileInputStream archivo
-                    = new FileInputStream("src/listaSubcripcion.dat");
+                    = new FileInputStream("src/re/listaSubcripcion.dat");
             ObjectInputStream lector
                     = new ObjectInputStream(archivo);
-            ArrayList<Subscripcion> listaSubscripcion
+            ArrayList<Subscripcion> list
                     = (ArrayList<Subscripcion>)lector.readObject();
             lector.close();
-            return listaSubscripcion;
+            return list;
         } catch (IOException | ClassNotFoundException ex) {
             return new ArrayList<>();
+            
         }
     }
     
