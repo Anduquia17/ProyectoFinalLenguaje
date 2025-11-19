@@ -4,9 +4,14 @@
  */
 package vistas;
 
+import controlador.ControladorMantenimiento;
 import controlador.ControladorMaquina;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
+import modelo.Mantenimiento;
 import modelo.Maquina;
 
 /**
@@ -16,6 +21,7 @@ import modelo.Maquina;
 public class VistaGestionMaquina extends javax.swing.JFrame {
 
     ControladorMaquina controladorMaquina;
+    ControladorMantenimiento controladorMantenimiento;
 
     /**
      * Creates new form VistaGestionMaquina
@@ -24,7 +30,10 @@ public class VistaGestionMaquina extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(this);
         this.controladorMaquina = new ControladorMaquina();
+        this.controladorMantenimiento = new ControladorMantenimiento();
         llenarTabla();
+        panelMantenimiento.setVisible(false);
+        jCheckBoxFueraDeServicio.setVisible(false);
 
     }
 
@@ -57,6 +66,16 @@ public class VistaGestionMaquina extends javax.swing.JFrame {
         btnMantenimiento = new javax.swing.JButton();
         jCheckBoxFueraDeServicio = new javax.swing.JCheckBox();
         btnRegresarAvistaAdmin = new javax.swing.JButton();
+        panelMantenimiento = new javax.swing.JPanel();
+        lblMotivo = new javax.swing.JLabel();
+        txtMotivo = new javax.swing.JTextField();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        lblFechaInicio = new javax.swing.JLabel();
+        lblFechaFin = new javax.swing.JLabel();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        lblDiasRestante = new javax.swing.JLabel();
+        txtDiasRestante = new javax.swing.JTextField();
+        btnGeneralBloqueo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -131,48 +150,124 @@ public class VistaGestionMaquina extends javax.swing.JFrame {
             }
         });
 
+        panelMantenimiento.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Mantenimiento", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Helvetica Neue", 0, 18))); // NOI18N
+
+        lblMotivo.setText("Motivo:");
+
+        lblFechaInicio.setText("Fecha de inicio:");
+
+        lblFechaFin.setText("Fecha de fin:");
+
+        lblDiasRestante.setText("Dias restante:");
+
+        txtDiasRestante.setEditable(false);
+        txtDiasRestante.setText("jTextField1");
+
+        btnGeneralBloqueo.setText("Generar Bloqueo");
+        btnGeneralBloqueo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGeneralBloqueoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelMantenimientoLayout = new javax.swing.GroupLayout(panelMantenimiento);
+        panelMantenimiento.setLayout(panelMantenimientoLayout);
+        panelMantenimientoLayout.setHorizontalGroup(
+            panelMantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelMantenimientoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelMantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelMantenimientoLayout.createSequentialGroup()
+                        .addGroup(panelMantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblFechaFin)
+                            .addComponent(lblFechaInicio)
+                            .addComponent(lblMotivo)
+                            .addComponent(lblDiasRestante))
+                        .addGap(12, 12, 12)
+                        .addGroup(panelMantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelMantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtDiasRestante)
+                                .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(panelMantenimientoLayout.createSequentialGroup()
+                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(0, 0, Short.MAX_VALUE)))))
+                    .addComponent(btnGeneralBloqueo))
+                .addContainerGap(63, Short.MAX_VALUE))
+        );
+        panelMantenimientoLayout.setVerticalGroup(
+            panelMantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelMantenimientoLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(panelMantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelMantenimientoLayout.createSequentialGroup()
+                        .addComponent(lblMotivo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblFechaInicio))
+                    .addGroup(panelMantenimientoLayout.createSequentialGroup()
+                        .addComponent(txtMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelMantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelMantenimientoLayout.createSequentialGroup()
+                        .addComponent(lblFechaFin)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelMantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblDiasRestante)
+                            .addComponent(txtDiasRestante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnGeneralBloqueo)
+                .addContainerGap(83, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblIdMaquina)
-                                    .addComponent(lblEdadMinima)
-                                    .addComponent(lblTipoDeJuego)
-                                    .addComponent(lblGenero)
-                                    .addComponent(lblValorHora))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtIdMaquina)
-                                    .addComponent(txtEdadMinima)
-                                    .addComponent(txtTipoDeJuego)
-                                    .addComponent(txtGenero)
-                                    .addComponent(txtValorHora)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblIdMaquina)
+                                            .addComponent(lblEdadMinima)
+                                            .addComponent(lblTipoDeJuego)
+                                            .addComponent(lblGenero)
+                                            .addComponent(lblValorHora))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtIdMaquina, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                                            .addComponent(txtEdadMinima)
+                                            .addComponent(txtTipoDeJuego)
+                                            .addComponent(txtGenero)
+                                            .addComponent(txtValorHora)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(btnGuardar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnBuscar))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(btnEditar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnEliminar)))
+                                .addGap(26, 26, 26))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnGuardar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnBuscar))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnEditar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnEliminar)))
-                        .addGap(26, 26, 26))
+                                .addComponent(jCheckBoxFueraDeServicio)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jCheckBoxFueraDeServicio)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnMantenimiento)
+                            .addComponent(btnRegresarAvistaAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelMantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnMantenimiento)
-                    .addComponent(btnRegresarAvistaAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,18 +297,24 @@ public class VistaGestionMaquina extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jCheckBoxFueraDeServicio))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGuardar)
-                    .addComponent(btnBuscar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEditar)
-                    .addComponent(btnEliminar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnMantenimiento)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(btnRegresarAvistaAdmin))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnGuardar)
+                            .addComponent(btnBuscar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnEditar)
+                            .addComponent(btnEliminar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnMantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRegresarAvistaAdmin))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(panelMantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -223,14 +324,14 @@ public class VistaGestionMaquina extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(247, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -317,10 +418,7 @@ public class VistaGestionMaquina extends javax.swing.JFrame {
 
     private void btnMantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMantenimientoActionPerformed
         // TODO add your handling code here:
-        VistaMantenimiento vistaM = new VistaMantenimiento();
-        vistaM.setVisible(true);
-        this.dispose();
-
+        panelMantenimiento.setVisible(true);
     }//GEN-LAST:event_btnMantenimientoActionPerformed
 
     private void btnRegresarAvistaAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarAvistaAdminActionPerformed
@@ -331,6 +429,31 @@ public class VistaGestionMaquina extends javax.swing.JFrame {
         this.dispose();
 
     }//GEN-LAST:event_btnRegresarAvistaAdminActionPerformed
+
+    private void btnGeneralBloqueoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeneralBloqueoActionPerformed
+        // TODO add your handling code here:
+        String motivo = txtMotivo.getText();
+        LocalDate fechaInicio = jDateChooser1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate fechaFin = jDateChooser2.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        int idMaquina = Integer.parseInt(txtIdMaquina.getText());
+        int edadMinima = Integer.parseInt(txtEdadMinima.getText());
+        String tipoJuego = txtTipoDeJuego.getText();
+        String genero = txtGenero.getText();
+        double valorHora = Double.valueOf(txtValorHora.getText());
+        boolean disponible = jCheckBoxFueraDeServicio.isSelected();
+        Maquina maquina = new Maquina(idMaquina, edadMinima, tipoJuego, genero, valorHora, disponible);
+        Mantenimiento mantenimiento = new Mantenimiento(motivo, LocalDateTime.MIN, LocalDateTime.MIN, maquina);
+        boolean respuesta = controladorMantenimiento.generarBloqueo(maquina, mantenimiento);
+        if (respuesta) {
+            JOptionPane.showMessageDialog(null, "Se bloqueo la maquina");
+            llenarTabla();
+            txtDiasRestante.setText(String.valueOf(mantenimiento.calcularDias()));
+           
+        } else {
+            JOptionPane.showMessageDialog(null, "No se bloqueo la maquina");
+
+        }
+    }//GEN-LAST:event_btnGeneralBloqueoActionPerformed
 
     public void limpiarCampos() {
         txtIdMaquina.setText(null);
@@ -347,27 +470,36 @@ public class VistaGestionMaquina extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnGeneralBloqueo;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnMantenimiento;
     private javax.swing.JButton btnRegresarAvistaAdmin;
     private javax.swing.JCheckBox jCheckBoxFueraDeServicio;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblDiasRestante;
     private javax.swing.JLabel lblEdadMinima;
+    private javax.swing.JLabel lblFechaFin;
+    private javax.swing.JLabel lblFechaInicio;
     private javax.swing.JLabel lblGenero;
     private javax.swing.JLabel lblIdMaquina;
+    private javax.swing.JLabel lblMotivo;
     private javax.swing.JLabel lblTipoDeJuego;
     private javax.swing.JLabel lblValorHora;
+    private javax.swing.JPanel panelMantenimiento;
     private javax.swing.JTable tablaMaquina;
+    private javax.swing.JTextField txtDiasRestante;
     private javax.swing.JTextField txtEdadMinima;
     private javax.swing.JTextField txtGenero;
     private javax.swing.JTextField txtIdMaquina;
+    private javax.swing.JTextField txtMotivo;
     private javax.swing.JTextField txtTipoDeJuego;
     private javax.swing.JTextField txtValorHora;
     // End of variables declaration//GEN-END:variables

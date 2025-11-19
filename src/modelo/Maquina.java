@@ -85,11 +85,6 @@ public class Maquina implements Serializable {
         this.disponible = disponible;
     }
 
-    public boolean ponerFueraDeServio() {
-        if (mantenimiento.isActiva() == true) {
-            disponible = false;
-        }
-        return true;
-    }
+    
 
 }

@@ -5,8 +5,10 @@
 package modelo;
 
 import java.io.Serializable;
+import java.time.Duration;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
+import java.time.LocalDateTime;
+import java.time.Period;
 
 /**
  *
@@ -15,25 +17,15 @@ import java.time.temporal.ChronoUnit;
 public class Mantenimiento implements Serializable {
 
     private String motivo;
-    private LocalDate fechaInicioMan;
-    private LocalDate fechaFinMan;
+    private LocalDateTime fechaInicioMan;
+    private LocalDateTime fechaFinMan;
     private int diasRestantes;
-    private boolean activar;
+    private Maquina maquina;
 
-    public Mantenimiento(String motivo, LocalDate fechaInicioMan, LocalDate fechaFinMan, boolean activa, int diasRestantes) {
+    public Mantenimiento(String motivo, LocalDateTime fechaInicioMan, LocalDateTime fechaFinMan, Maquina maquina) {
         this.motivo = motivo;
         this.fechaInicioMan = fechaInicioMan;
         this.fechaFinMan = fechaFinMan;
-        this.activar = false;
-        this.diasRestantes = diasRestantes;
-    }
-
-    public boolean isActiva() {
-        return activar;
-    }
-
-    public void setActiva(boolean activa) {
-        this.activar = activa;
     }
 
     public String getMotivo() {
@@ -44,28 +36,45 @@ public class Mantenimiento implements Serializable {
         this.motivo = motivo;
     }
 
-    public LocalDate getFechaInicioMan() {
+    public LocalDateTime getFechaInicioMan() {
         return fechaInicioMan;
     }
 
-    public void setFechaInicioMan(LocalDate fechaInicioMan) {
+    public void setFechaInicioMan(LocalDateTime fechaInicioMan) {
         this.fechaInicioMan = fechaInicioMan;
     }
 
-    public LocalDate getFechaFinMan() {
+    public LocalDateTime getFechaFinMan() {
         return fechaFinMan;
     }
 
-    public void setFechaFinMan(LocalDate fechaFinMan) {
+    public void setFechaFinMan(LocalDateTime fechaFinMan) {
         this.fechaFinMan = fechaFinMan;
     }
 
+    
     public int getDiasRestantes() {
         return diasRestantes;
     }
 
     public void setDiasRestantes(int diasRestantes) {
         this.diasRestantes = diasRestantes;
+    }
+
+    public Maquina getMaquina() {
+        return maquina;
+    }
+
+    public void setMaquina(Maquina maquina) {
+        this.maquina = maquina;
+    }
+
+    public long calcularDias() {
+        Duration duracion = Duration.between(fechaInicioMan, fechaFinMan);
+        long diasRestantes = duracion.toDays();
+        return diasRestantes;
+       
+
     }
 
 }

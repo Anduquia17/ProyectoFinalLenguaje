@@ -55,6 +55,7 @@ public class ControladorMaquina {
                 listaDeMaquinas.get(i).setTipoDeJuego(maquina.getTipoDeJuego());
                 listaDeMaquinas.get(i).setGenero(maquina.getGenero());
                 listaDeMaquinas.get(i).setValorHora(maquina.getValorHora());
+                listaDeMaquinas.get(i).setDisponible(maquina.isDisponible());
                 Singleton.getINSTANCE().escribirMaquina();
                 return true;
 
@@ -78,22 +79,21 @@ public class ControladorMaquina {
 
     public DefaultTableModel listarMaquina() {
         DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(new String[]{"Id Maquina", "Edad Minima", "Tipo De Juego", "Genero", "Valor Hora", ""});
+        model.setColumnIdentifiers(new String[]{"Id Maquina", "Edad Minima", "Tipo De Juego", "Genero", "Valor Hora", "Disponible"});
         for (int i = 0; i < getListaDeMaquinas().size(); i++) {
             if (getListaDeMaquinas().get(i) != null) {
                 model.addRow(new Object[]{getListaDeMaquinas().get(i).getIdMaquina(),
                     getListaDeMaquinas().get(i).getEdadMinima(),
                     getListaDeMaquinas().get(i).getTipoDeJuego(),
                     getListaDeMaquinas().get(i).getGenero(),
-                    getListaDeMaquinas().get(i).getValorHora()});
+                    getListaDeMaquinas().get(i).getValorHora(),
+                    getListaDeMaquinas().get(i).isDisponible() ? "SI" : "NO"
+                });
+
             }
 
         }
         return model;
     }
-
-//    public Maquina fueraDeServicio(Mantenimiento mantenimiento) {
-//        Maquina aux = buscarMaquina()
-//    }
 
 }
