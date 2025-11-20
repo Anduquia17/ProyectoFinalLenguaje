@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import modelo.Cliente;
 import modelo.Subscripcion;
+import modelo.Usuario;
 import singleton.Singleton;
 
 /**
@@ -38,16 +39,38 @@ public class ControladorSuscripcion {
     }
 
     public boolean guardarSubcripcion(Subscripcion subscripcion, Cliente cliente) {
-        Subscripcion aux = buscarSubscripción(subscripcion.getIdSuscripcion());
+        for (int i = 0; i < listaDeSuscripciones.size(); i++) {
+            if (listaDeSuscripciones.get(i) != null && listaDeSuscripciones.get(i).getIdSuscripcion() == subscripcion.getIdSuscripcion()) {
+                return false; // Ya existe una suscripción con ese ID
+            }
+        }
+        // 2) Validar que el cliente NO tenga una suscripción activa
         for (int i = 0; i < cliente.getListaDeSubcripsiones().size(); i++) {
-            if (aux != null || cliente.getListaDeSubcripsiones().get(i).isEstadoSubs() == true) {
-                return false;
+            Subscripcion s = cliente.getListaDeSubcripsiones().get(i);
+            if (s != null && s.isEstadoSubs() == true) {
+                return false; // El cliente ya tiene una suscripción activa
+            }
+        }
+        // 3) Agregar la nueva suscripción a la lista del cliente y a la lista general
+        cliente.getListaDeSubcripsiones().add(subscripcion);
+        listaDeSuscripciones.add(subscripcion);
+        // 4) Persistir cambios
+        Singleton.getINSTANCE().escribirSubscricion();
+        return true;
+
+    }
+
+    public boolean generarCobro(Subscripcion subscripcion, Cliente cliente) {
+
+        for (int i = 0; i < listaDeSuscripciones.size(); i++) {
+            if (listaDeSuscripciones.get(i).getIdSuscripcion() == subscripcion.getIdSuscripcion()) {
+                listaDeSuscripciones.get(i).setValorBase(subscripcion.calcularSubs(i));
+                Singleton.getINSTANCE().escribirSubscricion();
+                return true;
             }
 
         }
-        listaDeSuscripciones.add(subscripcion);
-        Singleton.getINSTANCE().escribirSubscricion();
-        return true;
+        return false;
     }
 
     public DefaultTableModel listarSubs() {

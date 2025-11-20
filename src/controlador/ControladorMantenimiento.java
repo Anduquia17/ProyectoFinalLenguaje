@@ -4,6 +4,7 @@
  */
 package controlador;
 
+import javax.swing.table.DefaultTableModel;
 import modelo.Mantenimiento;
 import modelo.Maquina;
 import singleton.Singleton;
@@ -18,7 +19,7 @@ public class ControladorMantenimiento {
 
     public ControladorMantenimiento() {
         this.controladorMaq = new ControladorMaquina();
-    } 
+    }
 
     public boolean generarBloqueo(Maquina maquina, Mantenimiento mantenimiento) {
         for (int i = 0; i < controladorMaq.getListaDeMaquinas().size(); i++) {
@@ -34,5 +35,23 @@ public class ControladorMantenimiento {
         return false;
 
     }
+
+    public boolean eliminarBloqueo(int id) {
+        for (int i = 0; i < controladorMaq.getListaDeMaquinas().size(); i++) {
+            if (controladorMaq.getListaDeMaquinas().get(i).getIdMaquina() == id) {
+                if (controladorMaq.getListaDeMaquinas().get(i).isDisponible() == false) {
+                    controladorMaq.getListaDeMaquinas().get(i).setDisponible(true);
+                    Singleton.getINSTANCE().escribirMaquina();
+                    return true;
+
+                }
+            }
+
+        }
+        return false;
+
+    }
+
+    
 
 }

@@ -3,7 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package modelo;
-
+                                                    /**POSIBLES CAMBIOS:
+                                                     * CAMBIAR EL MODELADO DE LA SUBS (ELIMINAR ENUM),
+                                                     * PARA QUE LA SUBSCRIPCION SEA LA CLASE PADRE 
+                                                     * AGREGAR UNA CLASE CALENDARIO,
+                                                    */
 import java.io.Serializable;
 import java.time.LocalDate;
 

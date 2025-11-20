@@ -96,4 +96,6 @@ public class ControladorMaquina {
         return model;
     }
 
+    
+
 }

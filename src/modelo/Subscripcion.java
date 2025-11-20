@@ -13,6 +13,7 @@ import java.util.ArrayList;
  * @author juanjoanduquia
  */
 public class Subscripcion implements Serializable {
+
     private int idSuscripcion;
     private TipoSuscripcion tipo;
     private int horasDisponibles;
@@ -24,7 +25,7 @@ public class Subscripcion implements Serializable {
     private ArrayList<Reserva> listaDeReservas;
     private boolean estadoSubs;
 
-    public Subscripcion(int idSuscripcion ,TipoSuscripcion tipo, int horasDisponibles, double valorBase, Cliente cliente, LocalDateTime fechaInicio, LocalDateTime fechafin, boolean estadoSubs) {
+    public Subscripcion(int idSuscripcion, TipoSuscripcion tipo, int horasDisponibles, double valorBase, Cliente cliente, LocalDateTime fechaInicio, LocalDateTime fechafin, boolean estadoSubs) {
         this.idSuscripcion = idSuscripcion;
         this.tipo = tipo;
         this.horasDisponibles = horasDisponibles;
@@ -44,9 +45,6 @@ public class Subscripcion implements Serializable {
         this.estadoSubs = estadoSubs;
     }
 
-    
-    
-
     public int getIdSuscripcion() {
         return idSuscripcion;
     }
@@ -55,7 +53,6 @@ public class Subscripcion implements Serializable {
         this.idSuscripcion = idSuscripcion;
     }
 
-    
     public TipoSuscripcion getTipo() {
         return tipo;
     }
@@ -112,13 +109,33 @@ public class Subscripcion implements Serializable {
         this.fechafin = fechafin;
     }
 
-    
-
     public void setListaDeReservas(ArrayList<Reserva> listaDeReservas) {
         this.listaDeReservas = listaDeReservas;
     }
-    
-    
-    
- 
+
+    public double calcularSubs(int horasUsadas) {
+        int horasDisponibles = 0;
+        double precioHoraExtra = 1000;
+        double total = 0;
+        if (tipo == TipoSuscripcion.BASICA) {
+            valorBase = 12000;
+            horasDisponibles = 20;
+        } else if (tipo == TipoSuscripcion.VIP) {
+            valorBase = 25000;
+            horasDisponibles = 48;
+        }
+        int horasExtra = horasUsadas - horasDisponibles;
+        if (horasExtra > 0) {
+            double costoHorasExtra = horasExtra * precioHoraExtra;
+            if (tipo == TipoSuscripcion.VIP) {
+                costoHorasExtra = costoHorasExtra - (costoHorasExtra * 0.20);
+            }
+            total = valorBase + costoHorasExtra;
+        } else {
+            total = valorBase;
+        }
+
+        return total;
+    }
+
 }

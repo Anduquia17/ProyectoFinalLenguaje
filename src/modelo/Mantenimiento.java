@@ -22,10 +22,12 @@ public class Mantenimiento implements Serializable {
     private int diasRestantes;
     private Maquina maquina;
 
-    public Mantenimiento(String motivo, LocalDateTime fechaInicioMan, LocalDateTime fechaFinMan, Maquina maquina) {
+    public Mantenimiento(String motivo, LocalDateTime fechaInicio, Maquina maquina, int diasRestantes) {
         this.motivo = motivo;
-        this.fechaInicioMan = fechaInicioMan;
-        this.fechaFinMan = fechaFinMan;
+        this.fechaInicioMan = LocalDateTime.now();
+        this.fechaFinMan = this.fechaInicioMan.plusDays(diasRestantes);
+        this.diasRestantes = diasRestantes;
+        this.maquina = maquina;
     }
 
     public String getMotivo() {
@@ -52,7 +54,6 @@ public class Mantenimiento implements Serializable {
         this.fechaFinMan = fechaFinMan;
     }
 
-    
     public int getDiasRestantes() {
         return diasRestantes;
     }
@@ -70,11 +71,8 @@ public class Mantenimiento implements Serializable {
     }
 
     public long calcularDias() {
-        Duration duracion = Duration.between(fechaInicioMan, fechaFinMan);
-        long diasRestantes = duracion.toDays();
-        return diasRestantes;
-       
-
+        Duration duracion = Duration.between(fechaInicioMan, LocalDate.now().atStartOfDay());
+        return duracion.toDays();
     }
 
 }
