@@ -141,6 +141,7 @@ public class VistaLogin extends javax.swing.JFrame {
         Usuario respuesta = controladorUsuario.login(correo, contraseña);
         if (respuesta != null) {
             JOptionPane.showMessageDialog(null, "Bienvenido");
+            
             if (respuesta instanceof Cliente) {
                 VistaCliente vistaCliente = new VistaCliente();
                 vistaCliente.setVisible(true);
