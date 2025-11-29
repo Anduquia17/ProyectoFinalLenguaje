@@ -20,7 +20,7 @@ public class Maquina implements Serializable {
     private Mantenimiento mantenimiento;
     private boolean disponible;
 
-    public Maquina(int idMaquina, int edadMinima, String tipoDeJuego, String genero, double valorHora, boolean disponible) {
+    public Maquina(int idMaquina, int edadMinima, String tipoDeJuego, String genero, double valorHora) {
         this.idMaquina = idMaquina;
         this.edadMinima = edadMinima;
         this.tipoDeJuego = tipoDeJuego;

@@ -11,6 +11,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import modelo.Maquina;
+import modelo.Reserva;
 import modelo.Subscripcion;
 import modelo.Usuario;
 
@@ -25,7 +26,11 @@ public class Singleton {
     private ArrayList<Usuario> listaUsuarios;
     private ArrayList<Maquina> listaDeMaquinas;
     private ArrayList<Subscripcion> listaSubscripcion;
+    private ArrayList<Reserva> listaDereservas;
 
+    public ArrayList<Reserva> getListaDereservas() {
+        return listaDereservas;
+    }
     public ArrayList<Subscripcion> getListaSubscripcion() {
         return listaSubscripcion;
     }
@@ -37,12 +42,12 @@ public class Singleton {
     public ArrayList<Maquina> getListaDeMaquinas() {
         return listaDeMaquinas;
     }
-    
 
     public Singleton() {
         this.listaUsuarios = leerUsuario();
         this.listaDeMaquinas = leerMaquina();
-        this.listaSubscripcion= leerSubscripcion();
+        this.listaSubscripcion = leerSubscripcion();
+        this.listaDereservas = leerReserva();
     }
 
     public static Singleton getINSTANCE() {
@@ -91,15 +96,14 @@ public class Singleton {
             ObjectInputStream lector
                     = new ObjectInputStream(archivo);
             ArrayList<Maquina> listaDeMaquinas
-                    = (ArrayList<Maquina>)lector.readObject();
+                    = (ArrayList<Maquina>) lector.readObject();
             lector.close();;
             return listaDeMaquinas;
         } catch (IOException | ClassNotFoundException ex) {
             return new ArrayList<>();
         }
     }
-    
-    
+
     public void escribirSubscricion() {
         try {
             FileOutputStream archivo
@@ -119,19 +123,41 @@ public class Singleton {
             ObjectInputStream lector
                     = new ObjectInputStream(archivo);
             ArrayList<Subscripcion> list
-                    = (ArrayList<Subscripcion>)lector.readObject();
+                    = (ArrayList<Subscripcion>) lector.readObject();
             lector.close();
             return list;
         } catch (IOException | ClassNotFoundException ex) {
             return new ArrayList<>();
-            
+
         }
     }
-    
-    
-    
-    
-    
-    
-    
+
+    public void escribirReserva() {
+        try {
+            FileOutputStream archivo
+                    = new FileOutputStream("src/re/listaDeReservas.dat");
+            ObjectOutputStream escritor
+                    = new ObjectOutputStream(archivo);
+            escritor.writeObject(listaDereservas);
+            escritor.close();
+        } catch (IOException ex) {
+        }
+    }
+
+    private ArrayList<Reserva> leerReserva() {
+        try {
+            FileInputStream archivo
+                    = new FileInputStream("src/re/listaDeReservas.dat");
+            ObjectInputStream lector
+                    = new ObjectInputStream(archivo);
+            ArrayList<Reserva> listaDeReservas
+                    = (ArrayList<Reserva>) lector.readObject();
+            lector.close();
+            return listaDereservas;
+        } catch (IOException | ClassNotFoundException ex) {
+            return new ArrayList<>();
+
+        }
+    }
+
 }

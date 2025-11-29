@@ -26,6 +26,7 @@ public class Mantenimiento implements Serializable {
         this.motivo = motivo;
         this.fechaInicioMan = LocalDateTime.now();
         this.fechaFinMan = this.fechaInicioMan.plusDays(diasRestantes);
+        this.fechaFinMan = fechaFinMan;
         this.diasRestantes = diasRestantes;
         this.maquina = maquina;
     }

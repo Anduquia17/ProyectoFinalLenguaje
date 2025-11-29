@@ -143,7 +143,8 @@ public class VistaLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Bienvenido");
             
             if (respuesta instanceof Cliente) {
-                VistaCliente vistaCliente = new VistaCliente();
+                Cliente cliente = (Cliente) respuesta;
+                VistaCliente vistaCliente = new VistaCliente(cliente);
                 vistaCliente.setVisible(true);
                 vistaCliente.setLocationRelativeTo(this);
                 this.dispose();

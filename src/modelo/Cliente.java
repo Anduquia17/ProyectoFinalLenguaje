@@ -17,12 +17,14 @@ public class Cliente extends Usuario implements Serializable {
     private String nombre;
     private int edad;
     private ArrayList <Subscripcion> listaDeSubcripsiones;
+    private ArrayList <Reserva> listaDeReservas;
 
     public Cliente(String nombre, int edad, int id, String correo, String contraseña, String rol) {
         super(id, correo, contraseña, rol);
         this.nombre = nombre;
         this.edad = edad;
         this.listaDeSubcripsiones = new ArrayList<>();
+        this.listaDeReservas = new ArrayList<>();
     }
 
     public String getNombre() {
@@ -50,5 +52,14 @@ public class Cliente extends Usuario implements Serializable {
     public void setListaDeSubcripsiones(ArrayList<Subscripcion> listaDeSubcripsiones) {
         this.listaDeSubcripsiones = listaDeSubcripsiones;
     }
+
+    public ArrayList<Reserva> getListaDeReservas() {
+        return listaDeReservas;
+    }
+
+    public void setListaDeReservas(ArrayList<Reserva> listaDeReservas) {
+        this.listaDeReservas = listaDeReservas;
+    }
+     
 
 }

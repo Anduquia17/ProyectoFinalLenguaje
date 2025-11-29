@@ -10,6 +10,7 @@ package modelo;
                                                     */
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -20,10 +21,10 @@ public class Reserva implements Serializable{
     private int idReserva;
     private Cliente Cliente;
     private Maquina maquina;
-    private LocalDate fechaReserva;
+    private LocalDateTime fechaReserva;
     private int cantidadHoras;
 
-    public Reserva(int idReserva, Cliente Cliente, Maquina maquina, LocalDate fechaReserva, int cantidadHoras) {
+    public Reserva(int idReserva, Cliente Cliente, Maquina maquina, LocalDateTime fechaReserva, int cantidadHoras) {
         this.idReserva = idReserva;
         this.Cliente = Cliente;
         this.maquina = maquina;
@@ -55,13 +56,15 @@ public class Reserva implements Serializable{
         this.maquina = maquina;
     }
 
-    public LocalDate getFechaReserva() {
+    public LocalDateTime getFechaReserva() {
         return fechaReserva;
     }
 
-    public void setFechaReserva(LocalDate fechaReserva) {
+    public void setFechaReserva(LocalDateTime fechaReserva) {
         this.fechaReserva = fechaReserva;
     }
+
+    
 
     public int getCantidadHoras() {
         return cantidadHoras;
